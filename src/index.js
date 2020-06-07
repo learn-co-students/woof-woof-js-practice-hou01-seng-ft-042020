@@ -38,6 +38,7 @@ fetch(url)
 })
 
 
+
 function addDog(dog){
   const divInfo = document.querySelector('#dog-info');
   divInfo.innerHTML = ''
@@ -53,6 +54,7 @@ function addDog(dog){
   divInfo.append(nameH2, isGoodDogBtn, imageUrl)
 
   isGoodDogBtn.addEventListener('click', e => {
+    e.preventDefault()
     // if (isGoodDogBtn.innerText === 'Good Dog!'){
     //   isGoodDogBtn.innerText = 'Bad Dog!'
     // } else {
@@ -75,7 +77,8 @@ function addDog(dog){
     .then(res => res.json())
     .then(updatedStatus => {
       dog.isGoodDog ? isGoodDogBtn.innerText = 'Good Dog!' : isGoodDogBtn.innerText = 'Bad Dog!';
+      addDog(updatedStatus)
     })
-    
+    // .catch(error)
   })
 }
